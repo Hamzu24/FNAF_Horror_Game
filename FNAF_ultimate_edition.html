@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FNAF_ULTIMATE-EDITION</title>
+</head>
+<body>
+    <button onclick="play()" id="playB" class="startUpStuff SButtons">Night 1</button>
+    <button onclick="tutorial()" id="tutorialB" class="startUpStuff SButtons">Start Tutorial</button>
+    <button onclick="extras()" id="extrasB" class="startUpStuff SButtons">Extras</button>
+    <h1 id="extraTitle" class="extraStuff"><b><u>FNAF_ULTIMATE-EDITION V2.1.5</u></b></h1>
+    <button id="newTip" class="extraStuff" onclick="newTip()">New Tip</button>
+    <h3 id="tipP" class="extraStuff">Animatronics stay closer to your doors as the nights progress</h3>
+    <button id="homeB" class="extraStuff" onclick="openMenu()">Home</button>
+    <h1 id="versionTitle" class="extraStuff">Version History</h1>
+    <p id="versionP" class="extraStuff">Latest Version: V2.2.1, 9 April 2020<br/>
+             Made night 5 even harder... V2.2.1<br/>
+             Fixed a bug where springtrap wouldn't make noise when he moved,<br/>and added a warning icon for BB when in the cameras V2.2<br/>
+             Fixed bug where doors would go too far down V2.1.6<br/>
+             Updates: Debbuging Sounds (resetting where applicable) V2.1.5<br/>
+             Debugged, created version history paragraph V2.1<br/>
+             Created 'Extras' page, entered Beta V2.0<br/>
+             Created the tutorial, debugged and added the menu animation V1.8<br/>
+             Added noise to Balloon Boy, debugged V1.7.5<br/>
+             Created Balloon Boy and winding meter V1.7<br/>
+             Fixed door movement, and added sounds for left and right specific noises V1.6<br/>
+             Debugged springtrap's movement V1.5.5<br/>
+             Filtered and reduced file size V1.5.1<br/>
+             Added Sprintrap V1.5<br/>
+             Added Vent Cameras V1.4<br/>
+             Made foxy's appearance in cameras more realistic V1.3.5<br/>
+             Fixed freddy and foxy's movement times V1.3<br/>
+             Made the doors have a background V1.2.5<br/>
+             Added freddy V1.2<br/>
+             Added large amount of sound and image files V1.1.5<br/>
+             Fully implemented Foxy V1.1<br/>
+             Fixed door light flickering V1.0.5<br/>
+             Added the buttons and moved out of alpha V1.0</p>
+    <img src="Images/circleAnimation/Stage10.png" id="warningIcon"/>
+    <img src="Images/Foxy_Standing.png" alt="foxy" id="camFoxy" class="gameStuff"/>
+    <img src="Images/Nightmare_Freddy-LookingStraight.png" alt="freddy" id="camFreddy" class="gameStuff"/>
+    <img src="Images/Monitor_Button.png" alt="monitorB" class="EGameStuff gameStuff" id="monitorB"/>
+    <img src="Images/monitorAnimation/Stage1.gif" alt="monitorAnimation" id="monitorAnimation" class="gameStuff"/>
+    <img src="Images/Show_Stage.jpg" id="selectedCam" class="monitorStuff gameStuff"/>
+    <img src="Images/cameraOutline.png" id="cameraOutline" class="monitorStuff gameStuff"/>
+    <img id="fnDoorL" class="EGameStuff gameStuff" src="Images/Security_Door.gif"/>
+    <img id="fnDoorR" class="EGameStuff gameStuff" src="Images/Security_Door.gif"/>
+    <div id="doorBlockL" class="EGameStuff gameStuff"></div>
+    <div id="doorBlockR" class="EGameStuff gameStuff"></div>
+    <div id="doorL" class="EGameStuff gameStuff"></div>
+    <div id="doorR" class="EGameStuff gameStuff"></div>
+    <div id="doorLlight" class="EGameStuff gameStuff" onclick="activateDoor('L')"></div>
+    <div id="doorRlight" class="EGameStuff gameStuff" onclick="activateDoor('R')"></div>
+    <div class="monitorStuff gameStuff" id="camBHolder"></div>
+    <div id="noseHolder" class="EGameStuff gameStuff" onclick="honk()"></div>
+    <div id="cam1" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(1, true)">Show Stage</div>
+    <div id="cam2" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(2, true)">West Hall</div>
+    <div id="cam3" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(3, true)">East Hall</div>
+    <div id="cam4" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(4, true)">Backstage</div>
+    <div id="cam5" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(5, true)">Dining Area</div>
+    <div id="cam6" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(6, true)">Toilets</div>
+    <div id="cam7" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(7, true)">Game Room</div>
+    <div id="cam8" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(8, true)">Exit</div>
+    <div id="cam9" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(9, true)">Closet</div>
+    <div id="cam10" class="monitorStuff cameras gameStuff mStat1" onclick="changeCam(10, true)">Back Corner</div>
+    <div id="youCam" class="monitorStuff gameStuff">YOU</div>
+    <div id="ventCam1" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(11, true)">Vent1</div>
+    <div id="ventCam2" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(12, true)">Vent2</div>
+    <div id="ventCam3" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(13, true)">Vent3</div>
+    <div id="ventCam4" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(14, true)">Vent4</div>
+    <div id="ventCam5" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(15, true)">Vent5</div>
+    <div id="ventCam6" class="monitorStuff gameStuff mStat2 cameras" onclick="changeCam(16, true)">Vent6</div>
+    <div id="ventTConnector1" class="connectors HConnectors mStat2 monitorstuff gameStuff"></div>
+    <div id="ventLConnector1" class="connectors VConnectors mStat2 monitorstuff gameStuff" onclick="blockVent('L', 1, 0)"></div>
+    <div id="ventRConnector1" class="connectors VConnectors mStat2 monitorstuff gameStuff" onclick="blockVent('R', 1, 0)"></div>
+    <div id="ventTConnector2" class="connectors HConnectors mStat2 monitorstuff gameStuff"></div>
+    <div id="ventLConnector2" class="connectors VConnectors mStat2 monitorstuff gameStuff" onclick="blockVent('L', 2, 0)"></div>
+    <div id="ventRConnector2" class="connectors VConnectors mStat2 monitorstuff gameStuff" onclick="blockVent('R', 2, 0)"></div>
+    <div id="ventTConnector3" class="connectors HConnectors mStat2 monitorstuff gameStuff"></div>
+    <div id="ventLConnector3" class="connectors mStat2 monitorstuff gameStuff" onclick="blockVent('L', 3, 4)"></div>
+    <div id="ventRConnector3" class="connectors mStat2 monitorstuff gameStuff" onclick="blockVent('R', 3, 5)"></div>
+    <div id="ventTConnector4" class="connectors mStat2 monitorStuff gameStuff" onclick="blockVent('L', 3, 4)"></div>
+    <div id="ventTConnector5" class="connectors mStat2 monitorStuff gameStuff" onclick="blockVent('R', 3, 5)"></div>
+    <div id="toggleCameras" class="monitorStuff gameStuff" onclick="toggleCameras()">Toggle</div>
+    <h3 id="camText" class="monitorStuff gameStuff">Show_Stage</h3>
+    <h3 id="powerText" class="PText gameStuff">Power: 100%</h3>
+    <h3 id="timeText" class="PText gameStuff">12:00</h3>
+    <h1 class="audioStuff">Workaround. Please ignore this, but click on these buttons:</h1>
+    <button class="audioStuff" onclick="moveOn('1')" id="audioB1">Please Click</button>
+    <button class="audioStuff" onclick="moveOn('2')" id="audioB2">Please Click</button>
+    <button class="audioStuff" onclick="moveOn('3')" id="audioB3">Please Click</button>
+    <img id="screenWrapper" src="Images/bg1.jpg"/>
+    <img id="BB" src="Images/BB.png" class="EGameStuff gameStuff"/>
+    <img id="meter" src="Images/circleAnimation/Stage1.gif" class="gameStuff EGameStuff"/>
+    <div id="blackSquare" class="gameStuff EGameStuff"></div>
+</body>
+<style>
+    #warningIcon {
+        position: absolute;
+        left: 84%;
+        top: 71%;
+        width: 50px;
+        height: 50px;
+        z-index: 29;
+    }
+    #versionP {
+        position: absolute;
+        top: 30%;
+        color: ghostwhite;
+    }
+    #versionTitle {
+        position: absolute;
+        font-size: 27px;
+        color: goldenrod;
+        top: 23%;
+    }
+    #homeB {
+        position: absolute;
+        left: 2%;
+        top: 2%;
+        width: 50px;
+        height: 50px;
+        background-color: orangered;
+        color: black;
+    }
+    #extraTitle {
+        position: absolute;
+        top: 0%;
+        font-size: 35px;
+        color: darkgoldenrod;
+    }
+    #newTip {
+        position: absolute;
+        top: 11%;
+        background-color: orangered;
+        color: black;
+        font-size: 15px;
+        width: 100px;
+        height: 30px;
+    }
+    #tipP {
+        position: absolute;
+        top: 16%;
+        color: ghostwhite;
+        font-size: 18px;
+    }
+    #blackSquare {
+        position: absolute;
+        left: 15%;
+        top: 5%;
+        background-color: black;
+        width: 120px;
+        height: 1000px;
+    }
+    #meter {
+        position: absolute;
+        left: 42%;
+        top: 66.9%;
+        width: 100px;
+        height: 100px;
+    }
+    #BB {
+        position: absolute;
+        left: 24%;
+        top: 15%;
+        height: 400px;
+        width: 500px;
+    }
+    #playB {
+        top: 5%;
+    }
+    #tutorialB {
+        top: 18%;
+    }
+    #extrasB {
+        top: 31%;
+    }
+    .SButtons {
+        position: absolute;
+        z-index: 35;
+        width: 125px;
+        height: 75px;
+        left: 1%;
+        color: orangered;
+        background-color: black;
+        font-size: 15px;
+    }
+    #camFoxy {
+        width: 211px;
+        height: 380px;
+        left: 0%;
+        top: 32%;
+        position: absolute;
+        z-index: 20;
+    }
+    #camFreddy {
+        width: 273px;
+        height: 447px;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        z-index: 20;
+    }
+    #doorL {
+        width: 242px;
+        height: 450px;
+        Background-color: black;
+        position: absolute;
+        left: 0%;
+        top: 35%;
+        z-index: 2;
+    }
+    #doorR {
+        width: 242px;
+        height: 450px;
+        Background-color: black;
+        position: absolute;
+        left: 82%;
+        top: 35%;
+        border-color: gray;
+        border-width: 10px;
+    }
+    #doorLlight {
+        width: 50px;
+        height: 50px;
+        Background-color: red;
+        position: absolute;
+        left: 17%;
+        top: 70%;
+        border-radius: 10px;
+        z-index: 2;
+    }
+    #doorRlight {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        left: 77%;
+        top: 70%;
+        z-index: 15;
+        border-radius: 10px;
+    }
+    #fnDoorL {
+        position: absolute;
+        width: 384px;
+        height: 450px;
+        left: -9.85%;
+        top: -48.5%;
+        z-index: 10;
+    }
+    #fnDoorR {
+        position: absolute;
+        width: 369px;
+        height: 480px;
+        left: 73.25%;
+        top: -50%;
+        z-index: 10;
+    }
+    #doorBlockL {
+        position: absolute;
+        left: 0%;
+        top: -33.18%;
+        background-color: black;
+        width: 250px;
+        height: 500px;
+        z-index: 15;
+    }
+    #doorBlockR {
+        position: absolute;
+        left: 81.8%;
+        top: -33.18%;
+        background-color: black;
+        width: 250px;
+        height: 500px;
+        z-index: 15;
+    }
+    #monitorB {
+        width: 235px;
+        height: 27px;
+        position: absolute;
+        top: 95%;
+    }
+    #monitorAnimation {
+        z-index: 10;
+    }
+    #camBHolder {
+        width: 350px;
+        height: 400px;
+        left: 65%;
+        top: 25%;
+        background-color: darkslategray;
+        z-index: 15;
+        position: absolute;
+    }
+    .cameras:hover {
+        background-color: darkgray;
+    }
+    
+    .cameras {
+        background-color: gray;
+        color: crimson;
+        width: 75px;
+        height: 35px;
+        position: absolute;
+        z-index: 20;
+        display: block;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 35px;
+        font-size: 14px;
+    }
+    
+    #selectedCam {
+        width: 750px;
+        height: 525px;
+        position: absolute;
+        z-index: 15;
+        left: 10%;
+        top: 15%;
+    }
+    
+    #cameraOutline {
+        width: 800px;
+        height: 585px;
+        position: absolute;
+        z-index: 21;
+        left: 8%;
+        top: 11.5%;
+    }
+    
+    #cam1 {
+        left: 75%;
+        top: 29%;
+    }
+    #cam2 {
+        left: 69%;
+        top: 36%;
+    }
+    #cam3 {
+        left: 81%;
+        top: 36%;
+    }
+    #cam4 {
+        left: 69%;
+        top: 42%;
+    }
+    #cam5 {
+        left: 81%;
+        top: 42%;
+    }
+    #cam6 {
+        left: 75%;
+        top: 48%;
+    }
+    #cam7 {
+        left: 69%;
+        top: 54%;
+    }
+    #cam8 {
+        left: 81%;
+        top: 54%;
+    }
+    #cam9 {
+        left: 69%;
+        top: 60%;
+    }
+    #cam10 {
+        left: 81%;
+        top: 60%;
+    }
+    #ventCam1 {
+        left: 70%;
+        top: 40%;
+    }
+    #ventCam2 {
+        left: 80%;
+        top: 40%;
+    }
+    #ventCam3 {
+        left: 70%;
+        top: 50%;
+    }
+    #ventCam4 {
+        left: 80%;
+        top: 50%;
+    }
+    #ventCam5 {
+        left: 70%;
+        top: 60%;
+    }
+    #ventCam6 {
+        left: 80%;
+        top: 60%;
+    }
+    #toggleCameras {
+        background-color: black;
+        color: lightcoral;
+        width: 75px;
+        height: 35px;
+        position: absolute;
+        z-index: 20;
+        display: block;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 35px;
+        font-size: 17px;
+        left: 66%;
+        top: 72%;
+    }
+    #toggleCameras:hover {
+        background-color: darkblue;
+    }
+    #youCam {
+        left: 75%;
+        top: 66%;
+        background-color: gray;
+        color: crimson;
+        width: 75px;
+        height: 35px;
+        position: absolute;
+        z-index: 20;
+        display: block;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 35px;
+        font-size: 19px;
+    }
+    .connectors {
+        background-color: black;
+        position: absolute;
+        z-index: 20;
+    }
+    .HConnectors {
+        width: 68.8px;
+        height: 10px;
+    }
+    .VConnectors {
+        width: 10px;
+        height: 38px;
+    }
+    #ventTConnector1 {
+        left: 75.25%;
+        top: 41.75%;
+    }
+    #ventTConnector2 {
+        left: 75.25%;
+        top: 51.75%;
+    }
+    #ventTConnector3 {
+        left: 75.25%;
+        top: 61.75%;
+    }
+    #ventLConnector1 {
+        left: 72.2%;
+        top: 44.85%;
+    }
+    #ventRConnector1 {
+        top: 44.85%;
+        left: 82.2%;
+    }
+    #ventLConnector2 {
+        top: 54.85%;
+        left: 72.2%;
+    }
+    #ventRConnector2 {
+        top: 54.85%;
+        left: 82.2%;
+    }
+    #ventLConnector3 {
+        top: 64.85%;
+        left: 72.2%;
+        width: 10px;
+        height: 20.5px;
+    }
+    #ventRConnector3 {
+        top: 64.85%;
+        left: 82.2%;
+        width: 10px;
+        height: 20.5px;
+    }
+    #ventTConnector4 {
+        top: 67.5%;
+        left: 72.2%;
+        width: 38.9px;
+        height: 10px;
+    }
+    #ventTConnector5 {
+        top: 67.5%;
+        left: 80.2%;
+        width: 38.9px;
+        height: 10px;
+    }
+    #camText {
+        color: mediumaquamarine;
+        font-size: 25px;
+        position: absolute;
+        left: 10%;
+        top: 22.5%;
+        z-index: 15;
+    }
+    .PText {
+        z-index: 25;
+        color: ghostwhite;
+        position: absolute;
+    }
+    #powerText {
+        left: 4%;
+        top: 2%;
+        font-size: 25px;
+    }
+    #timeText {
+        font-size: 25px;
+        left: 4%;
+        top: 7%;
+    }
+    #noseHolder {
+        position: absolute;
+        left: 37.1%;
+        top: 32.5%;
+        width: 10px;
+        height: 10px;
+        z-index: 20;
+        border-radius: 25px;
+    }
+    #screenWrapper {
+        position: absolute;
+        z-index: 30;
+        left: 0%;
+        top: 0%;
+    }
+    body {
+        overflow: hidden;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+//code order:
+//variables and .ready function
+//functions to start the game
+//checking functions
+//small non-essential functions
+//controlling lights (and one door function)
+//controlling the monitor
+//update functions
+//animatronic functions
+//functions to end the game (win/lose)
+//setIntervals
+
+    
+function Random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let counter = 0;
+let barkStatus = false;
+let dead = false;
+let dying = false;
+let won = false;
+let night = 1;
+let hour = 0;
+let deaths = 0;
+let LlightStat = false;
+let RlightStat = false;
+let LdoorStat = false;
+let RdoorStat = false;
+let monitorUp = false;
+let powerPercent = 100;
+let realPower = 1000;
+let powerUsage = 1;
+let monitorPos = 0;
+let togglePos = 0;
+let hallucinations = false;
+const monitorImgs = ['Images/monitorAnimation/Stage1.gif', 'Images/monitorAnimation/Stage2.gif', 'Images/monitorAnimation/Stage3.gif', 'Images/monitorAnimation/Stage4.gif', 'Images/monitorAnimation/Stage5.gif', 'Images/monitorAnimation/Stage6.gif', 'Images/monitorAnimation/Stage7.gif', 'Images/monitorAnimation/Stage8.gif', 'Images/monitorAnimation/Stage9.gif', 'Images/monitorAnimation/Stage10.gif'];
+const tips = ['The closer the room cameras are to your office, the more useful they are to you...', 'Animatronics stay closer to your doors as the nights progress', 'Listen for the moviement audio cues- they are very useful, especially on the later nights, when you have to act fast', 'If foxy is in your doorway, you can tell which side he is on from the running sound he makes', 'Try to keep springtrap (vent animatronic) as far away from you as possible', 'You can still win if an animatronic is in your office, or the power is out, even though it is extremely unlikely', 'There are four animatronics in total, and they all use different tactics', 'Some animatronics tactics are simpler than others. One animatronic in particular may attempt to outsmart you.', 'Foxy is the fastest animatronic, freddy moves slow and is hard to spot', 'All the timings are random, so every round will play out different', 'Three things take up power in your office: the monitor and both doors', 'Doing all three tasks that require power takes up much more energy than only two', 'If an animatronic is in your doorway, close the door ASAP', 'You definitely need a mouse to beat night 4 and 5!', 'You may not understand some of these tips right now, but keep thinking about their relevance as you play'];
+const foxyRoute = ['cam1', 'cam3', 'cam5', 'cam6', 'cam7', 'cam10', 'atDoor'];
+const freddyRoute = ['cam1', 'cam2', 'cam4', 'cam6', 'cam8', 'cam9', 'atDoor'];
+const foxyMoveTimes = ['N/A', 10000, 9000, 8000, 6500, 5000];
+const freddyMoveTimes = ['N/A', 16000, 14000, 13000, 11000, 6800];
+const springMoveTimes = ['N/A', 25000, 22000, 18000, 14000, 11000];
+const foxyPushbacksNeeded = ['N/A', '5', '10', '12', '13', '16'];
+const freddyPushbacksNeeded = ['N/A', '10', '14', '16', '18', '21'];
+const foxyAggression = ['N/A', '30', '27', '24', '22', '21'];
+const freddyAggression = ['N/A', '17', '19', '20', '22', '25'];
+const springAggression = ['N/A', 6000, 5500, 5000, 4000, 3250];
+const windTimes = ['N/A', 3500, 3000, 2500, 2000, 1250];
+let springtrapSide = "";
+let warningIconStatus = 0;
+counter = Random(1, 2);
+if (counter === 1) {
+    springtrapSide = 'L';   
+} else {
+    springtrapSide = 'R';
+}
+counter = 0;
+let springtrapDistance = 1;
+let foxyTimeAtDoor = 0;
+let freddyTimeAtDoor = 0;
+let foxyPosition = 0;
+let freddyPosition = 0;
+let foxyPushBacks = 0;
+let freddyPushBacks = 0;
+let selectedCam = 1;
+let selectedVentCam = 11;
+let foxyMoveChance = 0;
+let freddyMoveChance = 0;
+let LdoorOccupation = 'none';
+let RdoorOccupation = 'none';
+let LdoorBroken = false;
+let RdoorBroken = false;
+let inTutorial = false;
+let blockedVent = ['', '', ''];
+let counterRevolution = 0;
+let windAmount = 10;
+let winding = false;
+let windNumb = 0;
+let inMenu = true;
+const sounds = {footstep: new Audio('Sounds/footsteps.mp3'), winSound: new Audio('Sounds/6amSound.mp3'), deathMusic: new Audio('Sounds/deathMusic.mp3'), closeDoor: new Audio('Sounds/doorClosing.mp3'), openDoor: new Audio('Sounds/doorOpening.mp3'), backgroundNoises: new Audio('Sounds/eerie.mp3'), jumpscareShort: new Audio('Sounds/jumpscareShort.mp3'), jumpscareLong: new Audio('Sounds/jumpscareLong.mp3'), menuNoises: new Audio('Sounds/main-menu.mp3'), bells: new Audio('Sounds/churchBells.mp3'), runningSounds: [new Audio('Sounds/runningLeft.mp3'), new Audio('Sounds/runningRight.mp3')], dogBarking: new Audio('Sounds/dogBarking.mp3'), laughSounds: [new Audio('Sounds/laugh1.mp3'), new Audio('Sounds/laugh2.mp3'), new Audio('Sounds/laugh3.mp3'), new Audio('Sounds/laugh4.mp3'), new Audio('Sounds/laugh5.mp3')], noseSound: new Audio('Sounds/clownNose.mp3'), randomClick: new Audio('Sounds/randomClick.mp3'), monitorMove: new Audio('Sounds/monitorAnimation.mp3'), breathing: new Audio('Sounds/breathing.mp3'), scare: new Audio('Sounds/animatronicAtDoor.mp3'), brokenDoor: new Audio('Sounds/brokenDoor.mp3'), changeCamSounds: [new Audio('Sounds/changeCam1.mp3'), new Audio('Sounds/changeCam2.mp3'), new Audio('Sounds/changeCam3.mp3')], lightSound: new Audio('Sounds/lightSound.mp3'), powerOut: new Audio('Sounds/powerOut.mp3'), static: new Audio('Sounds/static.mp3'), ventMovements: [new Audio('Sounds/ventMovementLeft1.mp3'), new Audio('Sounds/ventMovementLeft2.mp3'), new Audio('Sounds/ventMovementRight1.mp3'), new Audio('Sounds/ventMovementRight2.mp3')], whispering: new Audio('Sounds/whispering.mp3'), ambientSound: new Audio('Sounds/ambientSound.mp3'), breathing: new Audio('Sounds/breathing.mp3'), windSound: new Audio('Sounds/WindSound.mp3'), BB_Calls: [new Audio('Sounds/BB_Call1.mp3'), new Audio('Sounds/BB_Call2.mp3'), new Audio('Sounds/BB_Call3.mp3')]};
+    
+$(document).ready(function() {
+    $('#audioStuff').hide();
+    $('.startUpStuff').hide();
+    $('.monitorStuff').hide();
+    $('#monitorAnimation').hide();
+    $('.gameStuff').hide();
+    $('#monitorB').css('left', (($(document).width()/2)-($('#monitorB').width()/2)).toString()+'px');
+    $('#monitorAnimation').css('width', $(document).width());
+    $('#monitorAnimation').css('height', $(document).height());
+    $('#monitorAnimation').css('left', (($(document).width()/2)-($('#monitorAnimation').width()/2)).toString()+'px');
+    $('#monitorAnimation').css('top', (($(document).height()/2)-($('#monitorAnimation').height)/2).toString()+'px');
+    $('#extraTitle').css('left', (($(document).width()/2)-($('#extraTitle').width()/2)).toString()+'px');
+    $('#newTip').css('left', (($(document).width()/2)-($('#newTip').width()/2)).toString()+'px');
+    $('#tipP').css('left', (($(document).width()/2)-($('#tipP').width()/2)).toString()+'px');
+    $('#versionTitle').css('left', (($(document).width()/2)-($('#versionTitle').width()/2)).toString()+'px');
+    $('#versionP').css('left', (($(document).width()/2)-($('#versionP').width()/2)).toString()+'px');
+    $('#screenWrapper').hide();
+    $('.extraStuff').hide();
+    setTimeout(function() {
+        $('#screenWrapper').css('width', ($(document).width()).toString()+'px');
+        $('#screenWrapper').css('height', ($(document).height()).toString()+'px');
+    }, 250);
+});
+    
+function openMenu() {
+    inMenu = true;
+    $('#playB').html("Night "+night.toString());
+    $('body').css('background-image', 'url("Images/blankSquare.png")');
+    $('.audioStuff').hide();
+    $('.gameStuff').hide();
+    $('.startUpStuff').show();
+    $('.extraStuff').hide();
+    $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+    setTimeout(function() {
+        $('#screenWrapper').show();
+        menuFlicker(deaths);
+    }, 100);
+    sounds.menuNoises.play();
+    menuNoisesCheck(deaths);
+    counter = 0;
+    counterRevolution = 0;
+    if (LdoorStat === true) {
+        activateDoor('L');
+    }
+    if (RdoorStat === true) {
+        activateDoor('R');
+    }
+    $("#fnDoorR").css("top", "-48.5%");
+    $("#fnDoorR").css("top", "-%");
+}
+    
+function play() {
+    console.log($(document).width());
+    console.log($(document).height());
+    resetVars();
+    $(".startUpStuff").hide();
+    $('.EGameStuff').show();
+    $('.PText').show();
+    $('#screenWrapper').hide();
+    $('body').css('background-image', "url('Images/Office.jpg')");
+    foxyMove(deaths);
+    freddyMove(deaths);
+    springtrapMove(deaths);
+    updatePower(deaths);
+    unwind(windNumb);
+    setTimeout(function() {
+        updateTime(deaths);
+    }, 35000);
+    sounds.menuNoises.pause();
+    sounds.menuNoises.currentTime = 0;
+    $('#BB').css('left', '24%');
+    $('#BB').css('top', '15%');
+    $('#BB').css('width', '500px');
+    $('#BB').css('height', '400px');
+    windAmount = 10;
+    displayMeter();
+};
+    
+function extras() {
+    inMenu = false;
+    $('.startUpStuff').hide();
+    $('.extraStuff').show();
+    $('#screenWrapper').hide();
+    $('body').css('background-image', 'url("Images/blackSquare.jpg")');
+}
+    
+function newTip() {
+    $('#tipP').html(tips[Random(0, tips.length-1)]);
+    $('#tipP').css('left', (($(document).width()/2)-($('#tipP').width()/2)).toString()+'px');
+}
+    
+function resetVars() {
+    inMenu = false;
+    windNumb = 0;
+    windAmount = 10;
+    winding = false;
+    deaths = deaths + 1;
+    barkStatus = false;
+    dead = false;
+    dying = false;
+    won = false;
+    LlightStat = false;
+    RlightStat = false;
+    LdoorStat = false;
+    RdoorStat = false;
+    monitorUp = false;
+    powerPercent = 100;
+    realPower = 1000;
+    powerUsage = 1;
+    monitorPos = 0;
+    togglePos = 0;
+    foxyTimeAtDoor = 0;
+    freddyTimeAtDoor = 0;
+    foxyPosition = 0;
+    freddyPosition = 0;
+    foxyPushBacks = 0;
+    freddyPushBacks = 0;
+    selectedCam = 1;
+    foxyMoveChance = 0;
+    freddyMoveChance = 0;
+    hour = 0;
+    hallucinations = false;
+    inTutorial = false;
+    blockedVent = ['', '', ''];
+    $('#timeText').html('12:00');
+    LdoorOccupation = 'none';
+    RdoorOccupation = 'none';
+    LdoorBroken = false;
+    RdoorBroken = false;
+    counter = Random(1, 2);
+    if (counter === 1) {
+        springtrapSide = 'L';   
+    } else {
+        springtrapSide = 'R';
+    }
+    counter = 0;
+    springtrapDistance = 1;
+    counter = 0;
+}
+    
+function tutorial() {
+    deaths++;
+    alert("Welcome to Five Nights at Freddy's Ultimate-Edition! In this tutorial you will learn how to protect yourself from the various animatronics, and how to survive the night. There are five animatronics in total.");
+    resetVars();
+    foxyPosition = -1;
+    freddyPosition = -1;
+    springtrapDistance = 0;
+    $(".startUpStuff").hide();
+    $('.EGameStuff').show();
+    $('#BB').hide();
+    $('#meter').hide();
+    $('#monitorB').hide();
+    $('#screenWrapper').hide();
+    $('#doorLlight').hide();
+    $('#doorRlight').hide();
+    $('body').css('background-image', "url('Images/Office.jpg')");
+    inTutorial = true;
+    setTimeout(function() {
+        alert("This is your office. From your office, you can control the doors and door lights, look at the monitor and wind up balloon boy.");
+        $('#doorLlight').show();
+        $('#doorRlight').show();
+        setTimeout(function() {
+            alert("You can turn on the door lights by hovering over the red button, and close the door by clicking the button.");
+            alert("The animatronics will only attack after they have stayed at your door for a certain period of time. This time gets shorter as the nights progress")
+            alert("You can try opening and closing the doors now.");
+            setTimeout(function() {
+                alert("Nice! Next up, is the monitor. In the monitor, you can view the animatronics moving around the compound.")
+                alert("You can look at the monitor often to keep track of where they are, and how close they are to your office.");
+                alert("When they are only one camera away, they will soon be in your doorway.");
+                alert("On the later nights, you may need to look at the monitor less and less");
+                $('#monitorB').show();
+                alert("You can acces the cameras through the button on the bottom of your screen. Try doing that now.");
+                setTimeout(function() {
+                    alert("Some cameras are more useful than others.");
+                    $('#toggleCameras').show();
+                    setTimeout(function() {
+                        alert("At the bottom left of your panel, there is a toggle button. Press this button to toggle between the vent cameras and room cameras.");
+                        alert("There is only one animatronic in the vent cameras. You can prevent this animatronic from moving by blocking the vent tunnels.")
+                        alert("You can block a vent tunnel by clicking it. However, you can only block one at a time. A good strategy is to try and keep him as far away from you as possible.")
+                        alert('You can try this now.');
+                        setTimeout(function() {
+                            if (monitorUp === true) {
+                                monitorAnimate(monitorUp);
+                            }
+                            setTimeout(function() {
+                                alert("The final animatronic that has special mechanics is balloon boy.");
+                                $('#BB').show();
+                                $('#meter').show();
+                                setTimeout(function() {
+                                    windAmount = 5;
+                                    alert("You have to keep balloon boy wound up by hovering your mouse over the meter (the circle)");
+                                    alert("As the nights progress, balloon boy will unwind faster and faster, forcing you to pay more and more attention to him. You can try doing this now");
+                                    alert("Be careful not to get sucked into staring at the monitors, and forgetting about him...")
+                                    unwind(deaths);
+                                    displayMeter();
+                                    setTimeout(function() {
+                                        alert("Finally, there is your office power.");
+                                        alert("You office power will continually drain during the course of the night, however, will drain faster depennding on how many doors are down, and whether the monitor is up.");
+                                        alert("If you survive until 6 AM without running out of power, you will win the night, and progress to the next night");
+                                        setTimeout(function() {
+                                            alert("Congratulations! You have completed the tutorial, and are ready to continue onto the first night.");
+                                            resetVars();
+                                            night= 1;
+                                            openMenu();
+                                        }, 100);
+                                    }, 10000);
+                                }, 100);
+                            }, 500);
+                        }, 10000);
+                    }, 1000);
+                }, 10000);
+            }, 10000);
+        }, 1000);
+    }, 100);
+}
+    
+function menuFlicker(round) {
+    setTimeout(function() {
+        if (round === deaths && inMenu === true) {
+            $('#screenWrapper').show();
+            console.log('working');
+            counter = Random(2, 3);
+            $('#screenWrapper').attr('src', 'Images/bg'+counter.toString()+'.jpg');
+            setTimeout(function() {
+                if (round === deaths && inMenu === true) {
+                    foxyMoveChance = Random(1, 3);
+                    if (foxyMoveChance === 1) {
+                        if (counter === 2) {
+                            $('#screenWrapper').attr('src', 'Images/bg3.jpg');
+                        } else {
+                            $('#screenWrapper').attr('src', 'Images/bg2.jpg');
+                        }
+                        setTimeout(function() {
+                            if (round === deaths && inMenu === true) {
+                                $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                                menuFlicker(round);
+                            }
+                        }, Random(25, 50));
+                    } else {
+                        setTimeout(function() {
+                            $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                            menuFlicker(round);
+                        }, Random(50, 50));
+                    }
+                }
+            }, Random(25, 50));
+        }
+    }, Random(1500, 5250));
+}
+    
+function gameMusicCheck() {
+    setTimeout(function() {
+        if (won === false && dead === false && powerPercent !== 0 && dying === false) {
+            sounds.ambientSound.play();
+            gameMusicCheck();
+        };
+    }, 13000);
+};
+    
+function menuNoisesCheck(deathRound) {
+    setTimeout(function() {
+        if (deaths === deathRound) {
+            sounds.menuNoises.currentTime = 0;
+            sounds.menuNoises.play();
+            menuNoisesCheck(deathRound);
+        }
+    }, 59000);
+}
+    
+function lightCheck(side) {
+    setTimeout(function() {
+        if (side === 'R' && RlightStat === true) {
+            sounds.lightSound.play(); 
+            lightCheck('R');
+        } else if (side === 'L' && LlightStat === true) {
+            sounds.lightSound.play();
+            lightCheck('L');
+        }
+    }, 6500);
+};
+    
+function breathingCheck() {
+    if (hallucinations === true) {
+        setTimeout(function() {
+            if (hallucinations === true) {
+                sounds.breathing.play();
+            }     
+        }, 5810);
+    }
+}
+    
+function moveOn(buttonNumb) {
+    counter = counter + 1;
+    $('#audioB'+buttonNumb).hide();
+    if (counter === 3) {
+        openMenu();
+    }
+}
+    
+function honk() {
+    sounds.noseSound.play();
+}
+    
+function RefreshCams() {
+    if (monitorUp === true) {
+        if (togglePos === 0) {
+            changeCam(selectedCam, false);
+        } else {
+            changeCam(selectedVentCam, false);
+        }
+    }
+}
+    
+$('#doorRlight').mouseenter(function() {
+    if (RdoorBroken === false && powerPercent !== 0) {
+        $('#camFreddy').css('width', '243px');
+        $('#camFreddy').css('height', '450px');
+        sounds.lightSound.play();
+        if (RdoorOccupation === 'foxy' && RdoorStat === false) {
+            $('#camFoxy').css('left', '83%');
+            $('#camFoxy').css('top', '41%');
+            $('#camFoxy').attr('src', 'Images/Foxy_Standing-Lighter.png')
+            $('#camFoxy').show();
+            sounds.scare.play();
+        } else if (RdoorOccupation === 'freddy' && RdoorStat === false) {
+            $('#camFreddy').css('left', '82%');
+            $('#camFreddy').css('top', '36%');
+            $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-LookingStraight-Lighter-RDoor.png')
+            $('#camFreddy').show();
+            sounds.scare.play();
+        }
+        $('#doorRlight').css('background-color', 'darkred');
+        lightOn('R');
+        RlightStat = true;
+    }
+});
+
+$('#doorLlight').mouseenter(function() {
+    if (LdoorBroken === false && powerPercent !== 0) {
+        $('#camFreddy').css('width', '280px');
+        $('#camFreddy').css('height', '450px');
+        sounds.lightSound.play();
+        if (LdoorOccupation === 'foxy' && LdoorStat === false) {
+            $('#camFoxy').css('left', '0%');
+            $('#camFoxy').css('top', '32%');
+            $('#camFoxy').attr('src', 'Images/Foxy_Standing-Lighter.png')
+            $('#camFoxy').show();
+            sounds.scare.play();
+        } else if (LdoorOccupation === 'freddy' && LdoorStat === false) {
+            $('#camFreddy').css('left', '-2.5%');
+            $('#camFreddy').css('top', '35.5%');
+            $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-LookingStraight-Lighter.png')
+            $('#camFreddy').show();
+            sounds.scare.play();
+        }
+        $('#doorLlight').css('background-color', 'darkred');
+        lightOn('L');
+        LlightStat = true;
+    }
+});
+
+$('#doorRlight').mouseleave(function() {
+    sounds.lightSound.pause();
+    sounds.lightSound.currentTime = 0;
+    RlightStat = false;
+    $('#doorR').css('background-image', 'url("Images/blackSquare.jpg")');
+    $('#doorRlight').css('background-color', 'red');
+    $('#camFoxy').hide();
+    $('#camFreddy').hide();
+});
+
+$('#doorLlight').mouseleave(function() {
+    sounds.lightSound.pause();
+    sounds.lightSound.currentTime = 0;
+    LlightStat = false;
+    $('#doorL').css('background-image', 'url("Images/blackSquare.jpg")');
+    $('#doorLlight').css('background-color', 'red');
+    $('#camFoxy').hide();
+    $('#camFreddy').hide();
+});
+    
+function lightOn(side) {
+    if (side === 'L') {
+        $('#door'+side.toString()).css('background-image', 'url("Images/LDoorway.png")');
+    } else {
+        $('#door'+side.toString()).css('background-image', 'url("Images/RDoorway.png")');
+    }
+    flicker(side);
+    lightCheck(side);
+};
+    
+function flicker(side) {
+    $('#camFoxy').css('width', '211px');
+    $('#camFoxy').css('height', '380px');
+    if (side === 'L') {
+        $('#door'+side.toString()).css('background-image', 'url("Images/LDoorway.png")');
+    } else {
+        $('#door'+side.toString()).css('background-image', 'url("Images/RDoorway.png")');
+    }
+    if (LdoorOccupation === 'foxy' && side === 'L' && LdoorBroken === false && LdoorStat === false) {
+        $('#camFoxy').show();
+        $('#camFoxy').css('top', '41%');
+        $('#camFoxy').css('left', '0%');
+        $('#camFoxy').attr('src', 'Images/Foxy_Standing-Lighter.png')
+    } else if (RdoorOccupation === 'foxy' && side === 'R' && RdoorBroken === false && RdoorStat === false) {
+        $('#camFoxy').show();
+        $('#camFoxy').css('top', '41');
+        $('#camFoxy').css('left', '83%');
+        $('#camFoxy').attr('src', 'Images/Foxy_Standing-Lighter.png')
+    }
+    if (LdoorOccupation === 'freddy' && side === 'L' && LdoorBroken === false && LdoorStat === false) {
+        $('#camFreddy').css('width', '280px');
+        $('#camFreddy').css('height', '450px');
+        $('#camFreddy').css('left', '-2.5%');
+        $('#camFreddy').css('top', '35.5%');
+        $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-LookingStraight-Lighter.png')
+        $('#camFreddy').show();
+    } else if (RdoorOccupation === 'freddy' && side === 'R' && RdoorBroken === false && RdoorStat === false) {
+        $('#camFreddy').css('width', '243px');
+        $('#camFreddy').css('height', '450px');
+        $('#camFreddy').css('left', '82%');
+        $('#camFreddy').css('top', '35.5%');
+        $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-LookingStraight-Lighter-RDoor.png')
+        $('#camFreddy').show();
+    }
+    setTimeout(function() {
+        $('#door'+side.toString()).css('background-image', 'url("Images/blackSquare.jpg")');
+        if (LdoorOccupation === 'foxy' && side === 'L' && monitorUp === false) {
+            $('#camFoxy').hide();
+        } else if (RdoorOccupation === 'foxy' && side === 'R' && monitorUp === false) {
+            $('#camFoxy').hide();
+        };
+        if (LdoorOccupation === 'freddy' && side === 'L' && monitorUp === false) {
+            $('#camFreddy').hide();
+        } else if (RdoorOccupation === 'freddy' && side === 'R' && monitorUp === false) {
+            $('#camFreddy').hide();
+        };
+        setTimeout(function() {
+            if (side === 'R' && RlightStat === true && dead === false && won === false && RdoorBroken === false && powerPercent !== 0) {
+                flicker(side);
+            } else {
+                if (dead === false && won === false && LlightStat === true && side === 'L' && LdoorBroken === false && powerPercent !== 0) {
+                    flicker(side);
+                };
+            };
+        }, Random(400, 900));
+    }, Random(250, 1000));
+};
+ 
+function activateDoor(side) {
+    if (powerPercent !== 0) {
+        if (side === 'L') {
+            if (LdoorStat === false && LdoorBroken === false) {
+                sounds.closeDoor.play();
+                $('#fnDoor'+side).animate({top: '+=625px'}, "slow");
+                $('#camFreddy').hide();
+                LdoorStat = !LdoorStat;
+                powerUsage = powerUsage + 1;
+            } else if (LdoorBroken === false) {
+                sounds.openDoor.play();
+                $('#fnDoor'+side).animate({top: '-=625px'}, "slow");
+                LdoorStat = !LdoorStat;
+                powerUsage = powerUsage - 1;
+            }
+            if (LdoorBroken === true) {
+                sounds.brokenDoor.play();
+            }
+        } else {
+            if (RdoorStat === false && RdoorBroken === false && powerPercent !== 0 && side === 'R') {
+                sounds.closeDoor.play();
+                $('#fnDoor'+side).animate({top: '+=625px'}, "slow");
+                $('#camFreddy').hide();
+                RdoorStat = !RdoorStat;
+                powerUsage = powerUsage + 1;
+            } else if (RdoorStat === true && RdoorBroken === false && powerPercent !== 0 && side === 'R') {
+                sounds.openDoor.play();
+                $('#fnDoor'+side).animate({top: '-=625px'}, "slow");
+                RdoorStat = !RdoorStat;
+                powerUsage = powerUsage - 1;
+            }
+            if (RdoorBroken === true) {
+                sounds.brokenDoor.play();
+            }
+        }
+    }
+}
+
+function blockVent(side, height, ttype) {
+    if (blockedVent[0] != '') {
+        if (blockedVent[2] == 0) {
+            $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).show();
+        } else {
+            $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).show();
+            $('#ventTConnector'+blockedVent[2]).show();
+        }
+    }
+    if (ttype == 0) {
+        $('#vent'+side+'Connector'+height.toString()).hide();
+        blockedVent = [side, height, 0];
+    } else {
+        $('#vent'+side+'Connector'+height.toString()).hide();
+        $('#ventTConnector'+ttype.toString()).hide();
+        blockedVent = [side, height, ttype];
+    }
+}    
+    
+$('#meter').mouseenter(function() {
+    winding = true;
+    windNumb = windNumb + 1;
+    wind(windNumb);
+});
+    
+$('#meter').mouseleave(function() {
+    winding = false;
+    windNumb = windNumb + 1;
+    unwind(windNumb);
+});
+    
+function wind(time) {
+    if (monitorUp === false) {
+        setTimeout(function() {
+            if (time === windNumb) {
+                windAmount = windAmount+1;
+                displayMeter();
+                wind(time);
+            }
+        }, 500);
+    }
+}
+
+function unwind(time) {
+    console.log('unwinding')
+    setTimeout(function() {
+        if (time === windNumb && won === false && dying === false) {
+            windAmount = windAmount-1;
+            displayMeter();
+            unwind(time);
+        }
+    }, windTimes[night]);
+}
+    
+setInterval(function() {
+    if (winding === true) {
+        sounds.windSound.play();
+    }
+}, 400);
+    
+function displayMeter() {
+    switch (windAmount) {
+        case 10:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage1.gif');
+        break;
+        case 9:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage2.gif');
+        break;
+        case 8:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage3.gif');
+        break;
+        case 7:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage4.gif');
+        break;
+        case 6:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage5.gif');
+        break;
+        case 5:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage6.gif');
+        break;
+        case 4:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage7.gif');
+        break;
+        case 3:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage8.gif');
+        break;
+        case 2:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage9.gif');
+        break;
+        case 1:
+            $('#meter').attr('src', 'Images/circleAnimation/Stage10.png');
+        break;
+        case 0:
+            setTimeout(function() {
+                if (windAmount === 0) {
+                    preDeath('BB', deaths);
+                    $('#meter').hide();
+                }
+            }, 1500);
+        break;
+    }
+}
+    
+$('#monitorB').click(function() {
+    monitorAnimate(monitorUp);
+    $('#EGameStuff').hide();
+});
+    
+function monitorAnimate(position) {
+    sounds.monitorMove.play();
+    if (position == false) {
+        $('#monitorAnimation').fadeIn('fast');
+        $('#monitorAnimation').attr('src', monitorImgs[monitorPos]);
+        monitorPos++;
+        if (monitorPos > 9) {
+            monitorUp = true;
+            $('#monitorB').show();
+            $('#camBHolder').show();
+            $('#youCam').show();
+            $('#selectedCam').show();
+            $('#toggleCameras').show();
+            $('#camText').show();
+            if (togglePos === 1) {
+                changeCam(selectedVentCam);
+                $('.mStat2').show();
+                if (blockedVent[0] != '' && blockedVent[2] == 0) {
+                    $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).hide();
+                } else if (blockedVent[2] != 0) {
+                    $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).hide();
+                    $('#ventTConnector'+blockedVent[2]).hide();
+                }
+            } else {
+                changeCam(selectedCam);
+                $('.mStat1').show();
+            }
+            if (inTutorial === true) {
+                $('#toggleCameras').hide();
+            }
+            console.log(inTutorial);
+            powerUsage = powerUsage + 1;
+        } else if (monitorPos == 1) {
+            $('.EGameStuff').fadeOut('fast');
+            setTimeout(function() {
+                monitorAnimate(position);
+            }, 40);
+        } else {
+            setTimeout(function() {
+                monitorAnimate(position);
+            }, 40);
+        }
+    } else {
+        $("#warningIcon").hide();
+        $('#monitorAnimation').attr('src', monitorImgs[monitorPos]);
+        monitorPos--;
+        if (monitorPos < 1) {
+            monitorUp = false;
+            setTimeout(function() {
+                $('#monitorAnimation').hide();
+                $('.EGameStuff').fadeIn('fast');
+                powerUsage = powerUsage - 1;
+                $('.monitorStuff').hide();
+            }, 100);
+        } else if (monitorPos == 9) {
+            $('#camFoxy').hide();
+            $('#camFreddy').hide();
+            $('.connectors').hide();
+            $("#cameraOutline").hide();
+            $('.monitorStuff').fadeOut('fast');
+            setTimeout(function() {
+                monitorAnimate(position);
+            }, 40);
+        } else {
+            setTimeout(function() {
+                monitorAnimate(position);
+            }, 40);
+        };
+    };
+};
+    
+function toggleCameras() {
+    if (togglePos === 1) {
+        $('.mStat2').hide();
+        $('.mStat1').show();
+        togglePos = 0;
+        changeCam(selectedCam, true);
+        counter = Random(0, 2);
+        sounds.changeCamSounds[counter].play();
+        counter = 0;
+    } else if (togglePos === 0) {
+        $('.mStat1').hide();
+        $('.mStat2').show();
+        togglePos = 1;
+        changeCam(selectedVentCam, true);
+        counter = Random(0, 2);
+        sounds.changeCamSounds[counter].play();
+        counter = 0;
+        $('#camFreddy').hide();
+        $('#camFoxy').hide();
+        if (blockedVent[0] != '' && blockedVent[2] == 0) {
+            $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).hide();
+        } else if (blockedVent[2] != 0) {
+            $('#vent'+blockedVent[0]+'Connector'+blockedVent[1]).hide();
+            $('#ventTConnector'+blockedVent[2]).hide();
+        }
+    }
+}
+    
+function changeCam(camNumb, flash) {
+    if (selectedCam != 1) {
+        $('#camFreddy').hide();
+    }
+    if (flash === true) {
+        $('#camFoxy').hide();
+        $('#camFreddy').hide();
+        $('#cameraOutline').hide();
+        $('#selectedCam').attr('src', 'Images/static.gif');
+        counter = Random(0, 2);
+        sounds.changeCamSounds[counter].play();
+        counter = 0;
+    }
+    if (camNumb < 11) {
+        selectedCam = camNumb;
+    } else {
+        selectedVentCam = camNumb;
+    }
+    setTimeout(function() {
+        $('#cameraOutline').show();
+        switch(camNumb) {
+        case 1:
+            $('#selectedCam').attr('src', 'Images/Show_Stage.jpg');
+            if (foxyRoute[foxyPosition] === 'cam1') {
+                $('#camFoxy').attr('src', 'Images/Foxy_Standing.png')
+                $('#camFoxy').css('left', '42%');
+                $('#camFoxy').css('top', '25%');
+                $('#camFoxy').css('width', '211px');
+                $('#camFoxy').css('height', '380px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            if (freddyRoute[freddyPosition] === 'cam1') {
+                $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-LookingStraight.png');
+                $('#camFreddy').css('left', '19%');
+                $('#camFreddy').css('top', '10%');
+                $('#camFreddy').css('width', '300px');
+                $('#camFreddy').css('height', '525px');
+                $('#camFreddy').show();
+            } else {
+                $('#camFreddy').hide();
+            }
+            $('#camText').html('Show Stage');
+        break;
+        case 2:
+            if (freddyRoute[freddyPosition] === 'cam2') {
+                $('#selectedCam').attr('src', 'Images/West_Hall+F.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/West_Hall.png');
+            }
+            $('#camText').html('West Hall');
+        break;
+        case 3:
+            $('#selectedCam').attr('src', 'Images/East_Hall.png');
+            if (foxyRoute[foxyPosition] === 'cam3') {
+                $('#camFoxy').attr('src', 'Images/Foxy_Standing.png')
+                $('#camFoxy').css('left', '29%');
+                $('#camFoxy').css('top', '26%');
+                $('#camFoxy').css('width', '100px');
+                $('#camFoxy').css('height', '190px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            $('#camText').html('East Hall');
+        break;
+        case 4:
+            if (freddyRoute[freddyPosition] === 'cam4') {
+                $('#selectedCam').attr('src', 'Images/Backstage+F.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/Backstage.jpg');
+            }
+            $('#camText').html('Backstage');         
+        break;
+        case 5:
+            $('#selectedCam').attr('src', 'Images/Dining_Room.png');
+            if (foxyRoute[foxyPosition] === 'cam5') {
+                $('#camFoxy').attr('src', 'Images/Foxy_Standing.png')
+                $('#camFoxy').css('left', '44%');
+                $('#camFoxy').css('top', '31%');
+                $('#camFoxy').css('width', '200px');
+                $('#camFoxy').css('height', '380px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            $('#camText').html('Dining Area');
+        break;
+        case 6:
+            if (freddyRoute[freddyPosition] === 'cam6') {
+                $('#selectedCam').attr('src', 'Images/Toilets+F.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/Toilets.jpg');
+            }
+            if (foxyRoute[foxyPosition] === 'cam6') {
+                $('#camFoxy').attr('src', 'Images/Foxy_Standing.png')
+                $('#camFoxy').css('left', '44%');
+                $('#camFoxy').css('top', '20%');
+                $('#camFoxy').css('width', '135px');
+                $('#camFoxy').css('height', '240px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            $('#camText').html('Toilets');
+        break;
+        case 7:
+            $('#selectedCam').attr('src', 'Images/Game_Room.png');
+            if (foxyRoute[foxyPosition] === 'cam7') {
+                $('#camFoxy').attr('src', 'Images/Foxy_Standing.png')
+                $('#camFoxy').css('left', '30%');
+                $('#camFoxy').css('top', '35%');
+                $('#camFoxy').css('width', '200px');
+                $('#camFoxy').css('height', '380px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            $('#camText').html('Game Room');
+        break;
+        case 8:
+            if (freddyRoute[freddyPosition] === 'cam8') {
+                $('#selectedCam').attr('src', 'Images/Exit+F.jpg');
+            } else {
+                $('#selectedCam').attr('src', 'Images/Exit.png');
+            }
+            $('#camText').html('Exit');
+        break;
+        case 9:
+            if (freddyRoute[freddyPosition] === 'cam9') {
+                $('#selectedCam').attr('src', 'Images/Closet+F.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/Closet.png');
+            }
+            $('#camText').html('Closet');
+        break;
+        case 10:
+            $('#selectedCam').attr('src', 'Images/Corner.png');
+            if (foxyRoute[foxyPosition] === 'cam10') {
+                $('#camFoxy').attr('src', 'Images/foxyLookingRight.png')
+                $('#camFoxy').css('left', '30%');
+                $('#camFoxy').css('top', '32%');
+                $('#camFoxy').css('width', '250px');
+                $('#camFoxy').css('height', '380px');
+                $('#camFoxy').show();
+            } else {
+                $('#camFoxy').hide();
+            };
+            $('#camText').html('Back Corner');
+        break;
+        case 11:
+            if (springtrapSide === 'L' && springtrapDistance === 1) {
+                $('#selectedCam').attr('src', 'Images/VentCam1+ST.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam1.png');$
+            }
+            $('#camText').html('Vent Cam 1');
+        break;
+        case 12:
+            if (springtrapSide === 'R' && springtrapDistance === 1) {
+                $('#selectedCam').attr('src', 'Images/VentCam2+ST.jpeg');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam2.png');
+            }
+            $('#camText').html('Vent Cam 2');
+        break;
+        case 13:
+            if (springtrapSide === 'L' && springtrapDistance === 2) {
+                $('#selectedCam').attr('src', 'Images/VentCam3+ST.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam3.png');
+            }
+            $('#camText').html('Vent Cam 3');
+        break;
+        case 14:
+            if (springtrapSide === 'R' && springtrapDistance === 2) {
+                $('#selectedCam').attr('src', 'Images/VentCam4+ST.jpg');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam4.png');
+            }
+            $('#camText').html('Vent Cam 4');
+        break;
+        case 15:
+            if (springtrapSide === 'L' && springtrapDistance === 3) {
+                $('#selectedCam').attr('src', 'Images/VentCam5+ST.png');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam5.png');
+            }
+            $('#camText').html('Vent Cam 5');
+        break;
+        case 16:
+            if (springtrapSide === 'R' && springtrapDistance === 3) {
+                $('#selectedCam').attr('src', 'Images/static.gif');
+            } else {
+                $('#selectedCam').attr('src', 'Images/VentCam6.png');
+            }
+        break;
+    }
+    //$('#cameraOutline').hide();
+    }, 200);
+};
+    
+function updatePower(round) {
+    if (won === false && dead === false && round === deaths) {
+        realPower = realPower - ((powerUsage*1.5));
+        powerPercent = Math.floor(realPower/10);
+        $('#powerText').html('Power: '+powerPercent.toString()+'%');
+        if (powerPercent === 0) {
+            if (RdoorStat === true) {
+                RdoorStat = false;
+                $('#fnDoorR').animate({top: '-=625px'}, "slow");
+            } 
+            if (LdoorStat === true) {
+                LdoorStat = false;
+                $('#fnDoorL').animate({top: '-=625px'}, "slow");
+            }
+            preDeath('foxy', deaths);
+        } else {
+            if (powerPercent === 98) {
+                sounds.bells.play();
+                setTimeout(function() {
+                    if (round === deaths) {
+                        sounds.ambientSound.play();
+                        gameMusicCheck();
+                    }
+                }, 41000);
+            }
+            setTimeout(function() {
+                updatePower(round);
+            }, 1000);
+        }
+    }
+}
+    
+function updateTime(round) {
+    setTimeout(function() {
+        if (round === deaths && won === false && dead === false) {
+            hour = hour + 1;
+            $('#timeText').html(hour.toString()+':00');
+            if (hour === 6) {
+                won = true;
+                win();
+            } else {
+                if (barkStatus === false && hour > 1) {
+                    barkStatus = Random(1, 4)
+                    if (barkStatus === 1) {
+                        sounds.dogBarking.play();
+                        barkStatus = true;
+                    } else {
+                        barkStatus = false;
+                    }
+                }
+                updateTime(round);
+            }
+        }
+    }, 50000);
+}
+    
+function foxyMove(round) {
+  if (round === deaths) {
+    if (foxyPosition < 5) {
+          //foxy is not in the final cam before arriving to your door
+          setTimeout(function() {
+              if (round === deaths) {
+                  foxyMoveChance = Random(1, (7-night));
+                  if (foxyMoveChance === 1) {
+                      //foxy is going to move somewhere
+                      //the next line decides what sound is going to be made (4 means no sound is played)
+                      foxyMoveChance = Random(1, 4);
+                      if (foxyMoveChance === 1 || foxyMoveChance === 2 || foxyMoveChance === 3) {
+                          sounds.footstep.play();
+                      }
+                      //the next line decides where he is going to move to
+                      foxyMoveChance = Random(1, 5);
+                      if (foxyMoveChance === 1) {
+                          if (foxyPosition > 1) {
+                            //foxy moves backwards
+                            foxyPosition = foxyPosition-1;
+                          } else {
+                              //foxy moves forwards
+                            foxyPosition = foxyPosition+1;
+                          }
+                      } else {
+                          //foxy moves forwards
+                          foxyPosition = foxyPosition+1;
+                      }
+                      console.log(foxyRoute[foxyPosition]+'-Foxy');
+                      RefreshCams();
+                  }
+                  foxyMove(deaths);
+              }
+          }, Random((foxyMoveTimes[night])-1500, foxyMoveTimes[night]));
+      } else {
+          //foxy is in the final cam before arriving to your door
+          setTimeout(function() {
+              if (round === deaths) {
+                  //the next line decides where he is going to go (which doorway)
+                  foxyMoveChance = Random(1, 3);
+                  if (foxyMoveChance === 1 && LdoorOccupation === 'none') {
+                      LdoorOccupation = 'foxy';
+                  } else if (foxyMoveChance === 2 && RdoorOccupation === 'none') {
+                      RdoorOccupation = 'foxy';
+                  } else if (LdoorOccupation === 'none' && foxyMoveChance !== 3) {
+                      LdoorOccupation = 'foxy';
+                  } else if (RdoorOccupation === 'none' && foxyMoveChance !== 3) {
+                      RdoorOccupation = 'foxy';
+                  } else {
+                      //foxy stays where he is
+                      foxyMoveChance = 3;
+                  }
+                  if (foxyMoveChance !== 3) {
+                      //foxy movs into your doorway
+                      RefreshCams();
+                      foxyPosition = 6;
+                      if (LdoorOccupation === 'foxy') {
+                          sounds.runningSounds[0].play();
+                      } else if (RdoorOccupation === 'foxy') {
+                          sounds.runningSounds[1].play();
+                      }
+                  } else {
+                      //foxy stays put
+                      foxyMove(deaths);
+                  }
+              }
+          }, Random(2500, (8-night)*1000));
+      }; 
+  }
+}    
+    
+function foxyRetreat() {
+    if (night === 1 || night === 2) {
+        foxyPosition = 2;
+    } else if (night !== 5) {
+        foxyPosition = Random(night-1, 4);
+    } else {
+        foxyPosition = Random(4, 5);
+    }
+    if (LdoorOccupation === 'foxy') {
+        sounds.runningSounds[0].play();
+    } else if (RdoorOccupation === 'foxy') {
+        sounds.runningSounds[1].play();
+    }
+    if (LdoorOccupation === 'foxy') {
+        LdoorOccupation = 'none';
+    } else {
+        RdoorOccupation = 'none';
+    }
+    setTimeout(function() {
+        foxyMove(deaths);
+        RefreshCams();
+    }, Random(foxyMoveTimes[night]*1.5, foxyMoveTimes[night]*3));
+};
+    
+function freddyMove(round) {
+  if (round === deaths) {
+    if (freddyPosition < 5) {
+          //freddy is not in the final cam before arriving to your door
+          setTimeout(function() {
+            if (round === deaths) {
+                  freddyMoveChance = Random(1, (8-night));
+                  if (freddyMoveChance === 1) {
+                      //freddy is going to move somewhere
+                      //the next line decides what sound is going to be made
+                      freddyMoveChance = Random(0, 4);
+                      sounds.laughSounds[freddyMoveChance].volume = 0.5+(freddyPosition/10);
+                      sounds.laughSounds[freddyMoveChance].play();
+                      //the next line decides where he is going to move to
+                      freddyMoveChance = Random(1, 7);
+                      if (freddyMoveChance === 1) {
+                          if (freddyPosition > 1) {
+                            //freddy moves backwards
+                            freddyPosition = freddyPosition-1;
+                          } else {
+                            //freddy moves forwards
+                            freddyPosition = freddyPosition+1;
+                          }
+                      } else {
+                          //freddy moves forwards
+                          freddyPosition = freddyPosition+1;
+                      }
+                      console.log(freddyRoute[freddyPosition]+'-Foxy');
+                      RefreshCams();
+                  }
+                  freddyMove(round);
+              }
+          }, Random((freddyMoveTimes[night])-1500, freddyMoveTimes[night]));
+      } else {
+          //freddy is in the final cam before arriving to your door
+          setTimeout(function() {
+              if (round === deaths) {
+                  //the next line decides where he is going to go (which doorway)
+                  freddyMoveChance = Random(1, 3);
+                  if (freddyMoveChance === 1 && LdoorOccupation === 'none') {
+                      LdoorOccupation = 'freddy';
+                  } else if (freddyMoveChance === 2 && RdoorOccupation === 'none') {
+                      RdoorOccupation = 'freddy';
+                  } else if (LdoorOccupation === 'none' && freddyMoveChance !== 3) {
+                      LdoorOccupation = 'freddy';
+                  } else if (RdoorOccupation === 'none' && freddyMoveChance !== 3) {
+                      RdoorOccupation = 'freddy';
+                  } else {
+                      //freddy stays where he is
+                      freddyMoveChance = 3;
+                  }
+                  if (freddyMoveChance !== 3) {
+                      //freddy movs into your doorway
+                      RefreshCams();
+                      freddyPosition = 6;
+                      freddyMoveChance = Random(0, 4);
+                      sounds.laughSounds[freddyMoveChance].volume = 1;
+                      sounds.laughSounds[freddyMoveChanc].play();  
+                  } else {
+                      //freddy stays put
+                      freddyMove(round);
+                  }
+              }
+          }, Random(2500, (8-night)*1000));
+      }; 
+  }
+}
+    
+function freddyRetreat() {
+    if (LdoorOccupation === 'freddy') {
+        LdoorOccupation = 'none';
+    } else {
+        RdoorOccupation = 'none';
+    }      
+    if (night === 1 || night === 2) {
+        freddyPosition = Random(1, 2);
+    } else if (night !== 5) {
+        freddyPosition = Random(night-1, 4);
+    } else {
+        freddyPosition = Random(4, 5);
+    }
+    sounds.laugh1.play();
+    setTimeout(function() {
+        freddyMove(deaths);
+        RefreshCams();
+    }, Random(freddyMoveTimes[night]*1.5, freddyMoveTimes[night]*3));
+};
+    
+function springtrapMove(round) {
+    if (round === deaths) {
+        setTimeout(function() {
+            stopSpringtrapSounds();
+            if (night < 3) {
+                counter = Random(1, 3);
+            } else {
+                counter = Random(1, 2);
+            }
+            if (counter === 1) {
+                counter = Random(0, 1);
+                console.log(counter);
+                if (springtrapSide === 'L') {
+                    sounds.ventMovements[counter+2].play();
+                    springtrapSide = 'R';
+                } else {
+                    sounds.ventMovements[counter].play();
+                    springtrapSide = 'L';
+                }
+                counter = 0;
+                RefreshCams();
+            }
+            setTimeout(function() {
+                if (round === deaths) {
+                    stopSpringtrapSounds();
+                    if (blockedVent[0] === springtrapSide && blockedVent[1] === springtrapDistance) {
+                        springtrapMove(round);
+                    } else {
+                        counter = Random(0, 1);
+                        if (springtrapSide === 'L') {
+                            sounds.ventMovements[counter].play();
+                        } else {
+                            sounds.ventMovements[counter+2].play();
+                        }
+                        counter = 0;
+                        if (springtrapDistance != 3) {
+                            springtrapDistance = springtrapDistance + 1;
+                            springtrapMove(round);
+                        } else {
+                            preDeath('springtrap', deaths);
+                        }
+                        RefreshCams();
+                    }
+                }
+            }, springAggression[night]);
+        }, springMoveTimes[night]);
+    }
+}
+    
+function stopSpringtrapSounds() {
+    for (let i = 0; i < 4; i++) {
+        sounds.ventMovements[i].pause();
+        sounds.ventMovements[i].currentTime = 0;
+    }
+}
+    
+function preDeath(animatronic, round) {
+    if (dying === false && dead === false && round === deaths && won === false) {
+        if (animatronic === 'foxy') {
+            dying = true;
+            setTimeout(function() {
+                clearScreen(false);
+                setTimeout(function() {
+                    clearScreen(false);
+                }, 500);
+                sounds.ambientSound.pause();
+                sounds.bells.pause();
+                sounds.lightSound.pause();
+                sounds.ambientSound.currentTime = 0;
+                sounds.bells.currentTime = 0;
+                sounds.lightSound.currentTime = 0;
+                sounds.powerOut.play();
+                $('.gameStuff').hide();
+                $('body').css('background-image', 'url("Images/Office_NoPower.gif")');
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, Random(4000, 8000));
+            }, Random(7000, 20000));
+        } else if (animatronic === 'freddy') {
+            dying = true;
+            clearScreen(false);
+            setTimeout(function() {
+                clearScreen(false);
+            }, 500);
+            sounds.ambientSound.pause();
+            sounds.bells.pause();
+            sounds.lightSound.pause();
+            sounds.ambientSound.currentTime = 0;
+            sounds.bells.currentTime = 0;
+            sounds.lightSound.currentTime = 0;
+            setTimeout(function() {
+                jumpscare(animatronic, round);
+            }, Random(2500, 7500));
+        } else if (animatronic === 'springtrap') {
+            dying = true;
+            $('#monitorB').hide();
+            if (monitorUp === false) {
+                monitorAnimate(monitorPos);
+            }
+            setTimeout(function() {
+                $('#monitorB').hide();
+            }, 500);
+            setTimeout(function() {
+                sounds.whispering.play();
+            }, 2000);
+            setTimeout(function() {
+                sounds.whispering.pause();
+                sounds.whispering.currentTime = 0;
+                jumpscare(animatronic, round);
+                $('.gameStuff').hide();
+                $('.monitorStuff').hide();
+            }, Random(5000, 7500));
+        } else if (animatronic === 'BB') {
+            console.log(animatronic);
+            dying = true;
+            if (monitorUp === true) {
+                monitorAnimate(true);
+            }
+            $('#monitorB').hide();
+            setTimeout(function() {
+                $('#BB').hide();
+                $('#meter').hide();
+                $('#monitorB').hide();
+            }, 750);
+            hallucinations = true;
+            sounds.runningSounds[0].play();
+            sounds.runningSounds[1].play();
+            sounds.breathing.play();
+            breathingCheck();
+            setTimeout(function() {
+                jumpscare('phantom1', round);
+            }, 1500);
+            setTimeout(function() {
+                hallucinations = false;
+                $('.EGameStuff').hide();
+                setTimeout(function() {
+                    sounds.BB_Calls[2].play();
+                    setTimeout(function() {
+                        sounds.BB_Calls[2].play();
+                    }, 1000);
+                    setTimeout(function() {
+                        jumpscare(animatronic, round);
+                    }, Random(5000, 8000));
+                }, 4000);
+            }, Random(8000, 11000));
+        }
+    }
+}
+    
+function jumpscare(animatronic, round) {
+    if (round === deaths && won === false) {
+        dead = true;
+        $('.PText').hide(); 
+        if (animatronic === 'foxy') {
+            if (counter < 37) {
+                if (counter < 1) {
+                    $('#camFoxy').attr('src', 'Images/foxyJumpscare/Full/Stage1.gif');
+                    $('#camFoxy').css('width', '1500px');
+                    $('#camFoxy').css('height', '950px');
+                    $('#camFoxy').css('left', (($(document).width()/2)-($('#camFoxy').width()/2)).toString()+'px');
+                    $('#camFoxy').css('top', (($(document).height()/2)-($('#camFoxy').height()/2)).toString()+'px');
+                    $('.gameStuff').hide();
+                    $('#camFoxy').show();
+                    counter = counter + 1;
+                    sounds.jumpscareLong.play();
+                }
+                $('#camFoxy').attr('src', 'Images/foxyJumpscare/Full/Stage'+counter.toString()+'.gif');
+                counter = counter + 1;
+                $('#camFoxy').show();
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, 50);
+            } else {
+                $('#camFoxy').fadeOut('slow');
+                $('#screenWrapper').attr('src', 'Images/static.gif');
+                $('#screenWrapper').fadeIn('slow');
+                counter = 0;
+                sounds.static.play();
+                setTimeout(function() {
+                    deaths = deaths + 1;
+                    $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                    openMenu();
+                }, 7500);
+            }
+        } else if (animatronic === 'freddy') {
+            if (counter != 20) {
+                if (counter === 0) {
+                    $('#camFreddy').css('width', '1500px');
+                    $('#camFreddy').css('height', '950px');
+                    $('#camFreddy').css('left', (($(document).width()/2)-($('#camFreddy').width()/2)).toString()+'px');
+                    $('#camFreddy').css('top', (($(document).height()/2)-($('#camFreddy').height()/2)).toString()+'px');
+                    $('#camFreddy').show();
+                    sounds.jumpscareLong.play();
+                } else {
+                    $('#camFreddy').show();
+                }
+                counter = counter+1;
+                $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-Jumpscare/Stage'+counter.toString()+'.gif');
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, 45);
+                } else {
+                    if (counterRevolution === 0) {
+                        counterRevolution = 1;
+                        counter = 1;
+                        $('#camFreddy').attr('src', 'Images/Nightmare_Freddy-Jumpscare/Stage'+counter.toString()+'.gif');
+                        setTimeout(function() {
+                            jumpscare(animatronic, round);
+                        }, 45);
+                    } else {
+                        $('#camFreddy').fadeOut('slow');
+                        $('#screenWrapper').attr('src', 'Images/static.gif');
+                        $('#screenWrapper').fadeIn('slow');
+                        counter = 0;
+                        counterRevolution = 0;
+                        sounds.static.play();
+                        setTimeout(function() {
+                            deaths = deaths+1;
+                            $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                            openMenu();
+                        }, 7500);   
+                    }
+                }
+        } else if (animatronic === 'springtrap') {
+            if (counter != 19) {
+                //uses camFreddy becuase springtrap has no pre-specified image
+                if (counter === 0) {
+                    $('#camFreddy').css('width', '1500px');
+                    $('#camFreddy').css('height', '950px');
+                    $('#camFreddy').css('left', (($(document).width()/2)-($('#camFreddy').width()/2)).toString()+'px');
+                    $('#camFreddy').css('top', (($(document).height()/2)-($('#camFreddy').height()/2)).toString()+'px');
+                    $('#camFreddy').show();
+                    sounds.jumpscareLong.play();
+                } else {
+                    $('#camFreddy').show();
+                }
+                counter = counter+1
+                $('#camFreddy').attr('src', 'Images/springtrapJumpscareAnimation/Stage'+counter.toString()+'.gif');
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, 40);
+            } else {
+                if (counterRevolution === 0) {
+                    counterRevolution = 1;
+                    counter = 1;
+                    $('#camFreddy').attr('src', 'Images/springtrapJumpscareAnimation/Stage'+counter.toString()+'.gif');
+                    setTimeout(function() {
+                        jumpscare(animatronic, round);
+                    }, 50);
+                } else {
+                    $('#camFreddy').fadeOut('slow');
+                    $('#screenWrapper').attr('src', 'Images/static.gif');
+                    $('#screenWrapper').fadeIn('slow');
+                    counter = 0;
+                    counterRevolution = 0;
+                    sounds.static.play();
+                    setTimeout(function() {
+                        deaths = deaths+1;
+                        $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                        openMenu();
+                    }, 7500); 
+                }
+            }
+        } else if (animatronic === 'BB') {
+            if (counter != 20) {
+                if (counter === 0) {
+                    $('#BB').css('width', ($(document).width()).toString()+'px');
+                    $('#BB').css('height', ($(document).height()).toString()+'px');
+                    $('#BB').css('left', '0%');
+                    $('#BB').css('top', '0%');
+                    $('#BB').show();
+                    sounds.jumpscareLong.play();
+                } else {
+                    $('#BB').show();
+                }
+                counter = counter+1;
+                $('#BB').attr('src', 'Images/BBJumpscare/Stage'+counter.toString()+'.gif');
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, 40);
+            } else {
+                if (counterRevolution === 0 || counterRevolution === 1) {
+                    counterRevolution = counterRevolution = counterRevolution + 1;
+                    counter = 1;
+                    $('#BB').attr('src', 'Images/BBJumpscare/Stage'+counter.toString()+'.gif');
+                    setTimeout(function() {
+                        jumpscare(animatronic, round);
+                    }, 50);
+                } else {
+                    $('#BB').fadeOut('slow');
+                    $('#screenWrapper').attr('src', 'Images/static.gif');
+                    $('#screenWrapper').fadeIn('slow');
+                    counter = 0;
+                    counterRevolution = 0;
+                    sounds.static.play();
+                    setTimeout(function() {
+                        deaths = deaths+1;
+                        $('#screenWrapper').attr('src', 'Images/bg1.jpg');
+                        openMenu();
+                    }, 7500);
+                }
+            }
+        } else if (animatronic === 'phantom1') {
+            if (counter != 20) {
+                //uses camFreddy becuase phantomFreddy has no pre-specified image
+                if (counter === 0) {
+                    $('#camFreddy').css('width', ($(document).width()).toString()+'px');
+                    $('#camFreddy').css('height', ($(document).height()).toString()+'px');
+                    $('#camFreddy').css('left', ((($(document).width()/2)-($('#camFreddy').width()/2))).toString()+'px');
+                    $('#camFreddy').css('top', ((($(document).height()/2)-($('#camFreddy').height()/2))-150).toString()+'px');
+                    $('#camFreddy').show();
+                    sounds.jumpscareShort.play();
+                } else {
+                    $('#camFreddy').show();
+                }
+                counter = counter+1
+                $('#camFreddy').attr('src', 'Images/phantomFreddyJumpscare/Stage'+counter.toString()+'.gif');
+                setTimeout(function() {
+                    jumpscare(animatronic, round);
+                }, 40);
+            } else {
+                console.log('hiding');
+                counter = 0;
+                $('#camFreddy').fadeOut(2000);
+            }
+        }
+    }
+}
+    
+function clearScreen(exceptions) {
+    if (monitorUp === true) {
+        monitorAnimate(true);
+    }
+    if (RdoorStat === true) {
+        activateDoor('R');
+    }
+    if (LdoorStat === true) {
+        activateDoor('L');
+    }
+    monitorUp = false;
+    $('#camFoxy').hide();
+    $('#camFreddy').hide();
+    $('.gameStuff').hide();
+    $('.EGameStuff').hide();
+    $('.monitorStuff').hide();
+    $('#monitorB').hide();
+    $('.PText').show();
+    $("#warningIcon").hide();
+    if (exceptions != false) {
+        for (let x = 0; x < exceptions.length; x++) {
+            $('#'+exceptions[x]).show();
+        }
+    }
+}
+    
+function win() {
+    if (dead === false) {
+        if (counter === 0) {
+            won = true;
+            if (night != 5) {
+                night = night + 1;
+            }
+            $('.monitorStuff').hide();
+            $('.PText').hide();
+            $('.EGameStuff').hide();
+            $('.monitorStuff').hide();
+            $('#camFoxy').hide();
+            $('#camFreddy').hide();
+            sounds.winSound.play();
+            sounds.bells.pause();
+            sounds.ambientSound.pause();
+            sounds.bells.currentTime = 0;
+            sounds.ambientSound.currentTime = 0;
+            $('#screenWrapper').attr('src', 'Images/6amAnimation/Stage1.jpg');
+            $('#screenWrapper').fadeIn('slow');
+            counter = 1;
+            if (LdoorStat === true) {
+                activateDoor('L');
+            } else if (RdoorStat === true) {
+                activateDoor('R');
+            }
+            if (monitorUp === true) {
+                monitorAnimate(true);
+            }
+        }
+        if (counter === 43) {
+            setTimeout(function() {
+                $('#screenWrapper').attr('src', 'Images/shiftComplete.gif');
+                setTimeout(function() {
+                    counter = 0;
+                    openMenu();
+                    deaths = deaths + 1;
+                }, 5000);
+            }, 2000);
+        } else {
+            counter = counter + 1;
+            $('#screenWrapper').attr('src', 'Images/6amAnimation/Stage'+counter.toString()+'.jpg');
+            setTimeout(function() {
+                win(); 
+            }, 200);
+        }
+    }
+}
+    
+setInterval(function() {
+    if (foxyPosition === 6 && dead === false && won === false) {
+        if (LdoorOccupation === 'foxy' && LdoorStat === true) {
+            foxyPushBacks = foxyPushBacks + 1;
+        } else if (RdoorOccupation === 'foxy' && RdoorStat === true) {
+            foxyPushBacks = foxyPushBacks + 1;
+        }; 
+        foxyTimeAtDoor = foxyTimeAtDoor+1;
+        if (foxyPushbacksNeeded[night]-1 < foxyPushBacks) {
+            foxyRetreat();
+        } else if (foxyTimeAtDoor > foxyAggression[night]-1) {
+            if (LdoorOccupation === 'foxy') {
+                $('#doorL').css('background-color', 'black');
+                $('#doorLlight').css('background-color', 'red');
+                if (LdoorStat === true) {
+                    activateDoor('L');
+                }
+                LdoorBroken = true;
+                if (monitorUp === false) {
+                    $('#camFoxy').hide();
+                };
+            } else {
+                $('#doorR').css('background-color', 'black');
+                $('#doorRlight').css('background-color', 'red');
+                if (RdoorStat === true) {
+                    activateDoor('R');
+                }
+                RdoorBroken = true;
+                if (monitorUp === false) {
+                    $('#camFoxy').hide();
+                }
+            }
+            preDeath('foxy', deaths);
+            foxyPosition = 7;
+        }
+    } else {
+        foxyTimeAtDoor = 0;
+        foxyPushBacks = 0;
+    }
+    if (freddyPosition === 6 && dead === false && won === false) {
+        if (LdoorOccupation === 'freddy' && LdoorStat === true) {
+            freddyPushBacks = freddyPushBacks + 1;
+        } else if (RdoorOccupation === 'freddy' && RdoorStat === true) {
+            freddyPushBacks = freddyPushBacks + 1;
+        }
+        freddyTimeAtDoor = freddyTimeAtDoor+1;
+        if (freddyPushbacksNeeded[night]-1 < freddyPushBacks) {
+            freddyRetreat();
+        } else if (freddyTimeAtDoor > freddyAggression[night]-1) {
+            if (LdoorOccupation === 'freddy') {
+                if (LdoorStat === true) {
+                    activateDoor('L');
+                }
+                if (monitorUp === false) {
+                    $('#camFreddy').hide();
+                };
+            } else {
+                if (RdoorStat === true) {
+                    activateDoor('R');
+                }
+                if (monitorUp === false) {
+                    $('#camFreddy').hide();
+                }
+            }
+            preDeath('freddy', deaths);
+            freddyPosition = 7;
+        }
+    } else {
+        freddyTimeAtDoor = 0;
+        freddyPushBacks = 0;
+    }
+}, 500);
+    
+setInterval(function() {
+    if (hallucinations === true) {
+        activateDoor('L');
+        activateDoor('R');
+        foxyMoveChance = Random(1, 3);
+        if (counter != 3) {
+            sounds.BB_Calls[Random(0, 2)].play();
+        }
+        foxyMoveChance = 0;
+    }
+}, 750);
+    
+setInterval(function() {
+    warningIconStatus += 1;
+    warningIconStatus = warningIconStatus % 2;
+    if (warningIconStatus === 0 && windAmount <= 3 && monitorUp === true) {
+        $("#warningIcon").show();
+    } else {
+        $("#warningIcon").hide();
+    }
+}, 500);
+</script>
+</html>
